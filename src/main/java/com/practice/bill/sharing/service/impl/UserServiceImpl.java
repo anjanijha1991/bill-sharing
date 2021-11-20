@@ -1,0 +1,33 @@
+package com.practice.bill.sharing.service.impl;
+
+import com.practice.bill.sharing.entity.User;
+import com.practice.bill.sharing.repository.UserRepository;
+import com.practice.bill.sharing.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+
+@Service
+public class UserServiceImpl implements UserService {
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Override
+    public void addUser(List<User> user) {
+        for(User u : user){
+        userRepository.setUserMap(u);
+        }
+        userRepository.printUsers();
+    }
+
+
+    @Override
+    public User getUser(String emailId) {
+        return userRepository.getUser(emailId);
+    }
+
+
+}
